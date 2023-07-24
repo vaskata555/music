@@ -1,0 +1,14 @@
+<?php require_once 'dbConfig.php'; 
+//session_set_cookie_params(0);
+session_start();
+
+?>
+<nav>
+<div class="topnav" id="myTopnav">
+
+
+  <a href="create_artist.php">добави артист</a>
+  <a href="add_song.php">добави песен</a>
+</div>
+
+</nav>
