@@ -9,6 +9,7 @@ session_start();
 
   <a href="create_artist.php">добави артист</a>
   <a href="add_song.php">добави песен</a>
+  <a href="create_album.php">добави album</a>
 </div>
 
 </nav>

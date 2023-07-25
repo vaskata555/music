@@ -16,7 +16,7 @@ include("artist_class.php");
 <label for="name">Artist Name:</label>
     <input type="text" name="name" id="name" required><br>
 
-   
+    
     <label for="description">Description:</label>
     <input type="text" name="description" id="description" required><br>
     <!-- Add more input fields as needed for other columns -->

@@ -55,50 +55,45 @@ class Song {
     }
 
 
-public function save($artist_id,$name, $image, $albumid) {
-
-    try {
-        $stmt = $this->db->prepare("INSERT INTO song (artist_id,name, image, albumid)  VALUES (?, ?, ?, ?)");
-        if (!$stmt) {
-            throw new Exception("Failed to prepare the SQL statement");
-        }
-        
-        // Bind the variables to the prepared statement
-        $stmt->bind_param('isss',$artist_id, $name, $image, $albumid);
-        if ($stmt->execute()) {
-            echo "Data inserted successfully!";
-        } else {
-            echo "Data insertion failed!";
-        }
-
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-    }
-}
-
-
-
-public function update() {
-    global $db;
-
+    public function save($artist_id, $name, $image, $albumid) {
+        global $db;
     
-    $stmt = $this->db->prepare("UPDATE song SET artist_id = :artist_id, name = :name, image = :image, albumid = :albumid WHERE id = :id");
-    $stmt->bindParam(':artist_id', $this->artist_id);
-    $stmt->bindParam(':name', $this->name);
-    $stmt->bindParam(':image', $this->image);
-    $stmt->bindParam(':albumid', $this->albumid);
-    $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
-    $stmt->execute();
-}
-
-public function delete() {
-    global $db; 
-
-     
-    $stmt = $this->db->prepare("DELETE FROM song WHERE id = :id");
-    $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
-    $stmt->execute();
-}
+        try {
+            $stmt = $db->prepare("INSERT INTO song (artist_id, name, image, albumid) VALUES (?, ?, ?, ?)");
+            if (!$stmt) {
+                throw new Exception("Failed to prepare the SQL statement");
+            }
+    
+            // Bind the variables to the prepared statement
+            $stmt->bind_param('isss', $artist_id, $name, $image, $albumid);
+            if ($stmt->execute()) {
+                echo "Data inserted successfully!";
+            } else {
+                echo "Data insertion failed!";
+            }
+    
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    
+    // For update() method
+    public function update() {
+        global $db;
+    
+        $stmt = $db->prepare("UPDATE song SET artist_id = ?, name = ?, image = ?, albumid = ? WHERE id = ?");
+        $stmt->bind_param('isssi', $this->artist_id, $this->name, $this->image, $this->albumid, $this->id);
+        $stmt->execute();
+    }
+    
+    // For delete() method
+    public function delete() {
+        global $db;
+    
+        $stmt = $db->prepare("DELETE FROM song WHERE id = ?");
+        $stmt->bind_param('i', $this->id);
+        $stmt->execute();
+    }
 
 
 
