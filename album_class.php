@@ -1,4 +1,5 @@
 <?php
+require_once 'templates/dbConfig.php';
 class Album {
     private $id;
     private $artist_id;
@@ -141,7 +142,25 @@ class Album {
             return null;
         }
     }
+    public function getAlbumByAlbumId($albumid) {
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM album WHERE id = ?");
+            $stmt->bind_param('i', $albumid);
+            $stmt->execute();
+            $result = $stmt->get_result();
+    
+            if ($result && $result->num_rows > 0) {
+                return $result->fetch_assoc(); // Return the first album
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return null;
+        }
+    }
 }
+
 
     $artist_id = "";
 $name = "";

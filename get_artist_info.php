@@ -9,9 +9,10 @@ if (isset($_GET['artist_id'])) {
 
     if ($artistInfo) {
         // Display the retrieved artist information
-        echo "Artist ID: " . $artistInfo['id'] . "<br>";
+      
+       
+        echo "<img src=artistimg/" . $artistInfo['image'] . "></img><br>";
         echo "Name: " . $artistInfo['name'] . "<br>";
-        echo "Image String: " . $artistInfo['image'] . "<br>";
         echo "Description: " . $artistInfo['description'] . "<br><br>";
     } else {
         echo "Artist not found.";

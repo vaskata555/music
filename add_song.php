@@ -33,6 +33,9 @@ include("album_class.php");
     
 </select>
 <br>
+<label for="file">Upload Song:</label>
+    <input type="file" name="song" id="song" required><br>
+
 <label for="name">song name:</label>
     <input type="text" name="name" id="name" required><br>
     <?php
@@ -56,11 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $image = $_POST["image"];
     $artist_id = $_POST["artist_id"];
     $albumid = $_POST["album_id"];
+    $song = $_POST["song"];
     // $image = ... (get the file path of the uploaded image)
 
     // Create the Song instance and save the data
-    $Song = new Song($db, $id,$artist_id , $name, $image, $albumid);
-    $Song->save($artist_id, $name, $image, $albumid);
+    $Song = new Song($db, $id,$artist_id , $name, $image, $albumid,$song);
+    $Song->save($artist_id, $name, $image, $albumid,$song);
 }
 ?>
 </body>
