@@ -11,9 +11,11 @@ if (isset($_GET['artist_id'])) {
         // Display the retrieved artist information
       
        
-        echo "<img src=artistimg/" . $artistInfo['image'] . "></img><br>";
+        echo "<div class='artistfiller'>";
+        echo "<img class='artistimg' src=artistimg/" . $artistInfo['image'] . "></img>";
+        echo "</div>";
         echo "Name: " . $artistInfo['name'] . "<br>";
-        echo "Description: " . $artistInfo['description'] . "<br><br>";
+        echo "Description: " . $artistInfo['description'] . "";
     } else {
         echo "Artist not found.";
     }

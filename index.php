@@ -66,6 +66,7 @@ require_once("song_class.php");
     }
 ?>
 </div>
+
 <div class="albumrow">
 <?php
  if (isset($_GET['albumid'])) {
@@ -73,23 +74,27 @@ require_once("song_class.php");
   $Albums = new Album($db, null, null, null, null);
   $AlbumInfo = $Albums->getAlbumByAlbumId($albumid);
 
-  if ($AlbumInfo) {
+  if ($AlbumInfo !== null) {
       // Display the retrieved artist information
       echo "Artist ID: " . $AlbumInfo['id'] . "<br>";
       echo "Name: " . $AlbumInfo['artist_id'] . "<br>";
       echo "Image String: " . $AlbumInfo['name'] . "<br>";
       echo "artist: " . $AlbumInfo['image'] . "<br><br>";
-  } else {
-      echo "Artist not found.";
-  }
 } else {
-  echo "Invalid artist ID.";
+  echo "Album not found.";
 }
+ }
 ?>
 </div>
+<div class="equalizer">
+aaa
+  </div>
 </div>
 </div>
 <div class="playerback">
+  <div class="whatsongison">
+
+</div>
 <?php
 if (isset($_GET['songid'])) {
   $songid = $_GET['songid'];
@@ -97,12 +102,13 @@ if (isset($_GET['songid'])) {
   $Songinfo = $Song->getSongById($songid);
 }
 ?>
-<audio controls id="myAudio" preload="metadata" style=" width:800px;">
+<div class="grid-item">
+<audio controls id="myAudio" preload="metadata" style=" width:1000px;">
 	<source id="audioSource" src="<?php echo isset($Songinfo['song']) ? $Songinfo['song'] : ''; ?>" type="audio/mpeg">
   
-	Your browser does not support the audio element.
-</audio>
 
+</audio>
+</div>
 </div>
 </div>
 </body>
@@ -113,77 +119,69 @@ include("templates/footer.php")
 ?>
 <script>
 $(document).ready(function() {
-  // Listen for click event on song div elements with class 'song'
-  $('.songcell_song').on('click', function() {
-    var artist_id = $(this).data('artist-id');
+  $(".songcell_song").on("click", function() {
+    var artist_id = $(this).data("artist-id");
+    var albumid = $(this).data("albumid");
+    var songid = $(this).data("songid");
 
     // Make an AJAX request to get the artist information
     $.ajax({
-      url: 'get_artist_info.php', // Replace 'get_artist_info.php' with the actual file name that will handle the AJAX request
-      method: 'GET',
+      url: "get_artist_info.php",
+      method: "GET",
       data: { artist_id: artist_id },
       success: function(response) {
-        // Update the artistrow div with the retrieved artist information
-        $('.artistrow').html(response);
+        $(".artistrow").html(response);
       },
       error: function() {
-        console.log('Error occurred while retrieving artist information.');
+        console.log("Error occurred while retrieving artist information.");
       }
     });
-  });
-});
-</script>
-<script>
-$(document).ready(function() {
-  // Listen for click event on song div elements with class 'song'
-  $('.songcell_song').on('click', function() {
-    var albumid = $(this).data('albumid');
 
-    // Make an AJAX request to get the artist information
+    // Make an AJAX request to get the album information
     $.ajax({
-      url: 'get_album_info.php', // Replace 'get_artist_info.php' with the actual file name that will handle the AJAX request
-      method: 'GET',
+      url: "get_album_info.php",
+      method: "GET",
       data: { albumid: albumid },
       success: function(response) {
-        // Update the artistrow div with the retrieved artist information
-        $('.albumrow').html(response);
+        $(".albumrow").html(response);
       },
       error: function() {
-        console.log('Error occurred while retrieving artist information.');
+        console.log("Error occurred while retrieving album information.");
       }
     });
-  });
-});
-</script>
-<script>
-  // jQuery script to handle the Ajax request and change audio source
-  $(document).ready(function() {
-    $('.songcell_song').on('click', function() {
-    
-     
-        var songid = $(this).data('songid');
 
-        $.ajax({
-        url: 'get_new_audio.php',
-        type: 'GET',
-        data: { songid: songid },
-        dataType: 'text',
-        success: function(audioSource) {
-          // Update the audio source dynamically
-          $('#audioSource').attr('src', audioSource);
-          var audioPlayer = $('#myAudio')[0]; // Get the DOM element
+    // Make an AJAX request to get the audio source information
+    $.ajax({
+      url: "get_new_audio.php",
+      type: "GET",
+      data: { songid: songid },
+      dataType: "text",
+      success: function(audioSource) {
+        $("#audioSource").attr("src", audioSource);
+        var audioPlayer = $("#myAudio")[0]; // Get the DOM element
         if (!audioPlayer.paused) {
           audioPlayer.pause();
         }
-
-        // Set the currentTime to 0 to reset the player without autoplaying
-        audioPlayer.currentTime = 0
-        $('#myAudio').get(0).load();
-        },
-        error: function(xhr, status, error) {
-          console.error(error);
-            }
-        });
+        audioPlayer.currentTime = 0; // Set the currentTime to 0 to reset the player without autoplaying
+        $("#myAudio").get(0).load();
+      },
+      error: function(xhr, status, error) {
+        console.error(error);
+      }
     });
+
+    // Make an AJAX request to get "what song is on" information
+    $.ajax({
+      url: "get_whatsongison.php",
+      type: "GET",
+      data: { songid: songid },
+      success: function(whatsongResponse) {
+        $(".whatsongison").html(whatsongResponse);
+      },
+      error: function() {
+        console.log('Error occurred while retrieving "what song is on" information.');
+      }
+    });
+  });
 });
 </script>

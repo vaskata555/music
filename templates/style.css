@@ -2,7 +2,7 @@
     position:relative;
     background-image: url('../images/cyber.png');
     background-repeat: no-repeat;
-    
+    background-color: black;
     width:100%;
    height:90%;
    
@@ -26,10 +26,10 @@
 
 }
 .gridmaker{
-    display: grid;
+  display: grid;
   grid-template-columns: 10% 70% 10%;
   width: 90%;
-  height: 40%;
+  height: 20rem;
   margin-bottom: 2rem;
   grid-column-start: 2;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -37,27 +37,54 @@
   margin-right:1%;
   
 }
+
 .gridmaker2{
-    display:grid;
-    grid-template-columns: 40% 20% 40%;
-   
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 30rem));
+  gap:3rem;
     width:100%;
-    height:30%
+    height:50%;
+   
+  
+}
+@media only screen and (max-width: 1500px) {
+  .gridmaker {
+    height: 20rem;
+  }
+}
+.equalizer {
+ width: 30rem;
+ height:17rem;
+
+ 
+    margin-top:2rem;
+
+ background: rgba(255, 255, 255, 0.34);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.1px);
+-webkit-backdrop-filter: blur(9.1px);
+border: 1px solid rgba(255, 255, 255, 0.2);
+margin-left:1.5rem;
 }
 .gridwrapper {
     display: flex;
     overflow-x: auto; /* Enable horizontal scrolling */
     width: 100%;
     height: 100%;
+    
+    margin-top:2rem;
   }
+  
 .musicrow{
-    display: flex; /* Use Flexbox */
+  display: flex; /* Use Flexbox */
   justify-content: center; /* Center items horizontally */
   align-items: center; /* Center items vertically */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 10px;
     overflow-y: hidden;
     margin-top:2vw;
+    height:15rem;
 background: rgba(255, 255, 255, 0.34);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -66,12 +93,16 @@ backdrop-filter: blur(9.1px);
 border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .artistrow{
+   display:flex;
+   flex-direction: row;
+    height:17rem;
+    width:30rem;
    
-    height:100%;
-    grid-column-start: 1;
-    margin-left:5%;
-    grid-row-start: 1;
-    margin-top:2vw;
+    
+   
+    margin-left:1.5rem;
+   
+    margin-top:2rem;
 background: rgba(255, 255, 255, 0.34);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -80,12 +111,14 @@ backdrop-filter: blur(9.1px);
 border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .albumrow{
+  margin-left:5%;
+  height:17rem;
+  width:30rem;
+
+
+  
+  margin-top:2rem;
  
-  height:100%;
-  grid-column-start: 3;
-  margin-right:5%;
-  grid-row-start: 1;
-  margin-top:2vw;
 background: rgba(255, 255, 255, 0.34);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -93,6 +126,7 @@ backdrop-filter: blur(9.1px);
 -webkit-backdrop-filter: blur(9.1px);
 border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 .topnav {
     overflow: hidden;
     
@@ -151,8 +185,8 @@ align-items: center;
     background-color: black;
     width:100%;
     height:10%;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 13% 74% 13%;
     justify-content: center;
     align-items: center;
   }
@@ -161,4 +195,38 @@ align-items: center;
     width:100%;
     height:100%;
   }
-  
+  @media only screen and (max-width: 1500px) {
+    .wrap {
+      height:200%;
+    }
+  }
+  .artistimg{
+    margin:5px;
+    width:270px;
+    height:250px;
+    border-radius: 20px;
+  }
+  .artistfiller{
+    height:70%;
+  }
+ 
+  .grid-item{
+    grid-column-start: 2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .songonwrapper{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+  }
+  .whatsongison{
+    grid-column-start: 1;
+  }
+  .songon{
+    margin-left:10%;
+    width:5rem;
+    height:5rem;
+    border-radius: 10px;
+  }
