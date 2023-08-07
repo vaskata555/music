@@ -44,12 +44,15 @@
   gap:3rem;
     width:100%;
     height:50%;
+    margin-right:1%;
    
   
 }
 @media only screen and (max-width: 1500px) {
   .gridmaker {
     height: 20rem;
+    width: 100%;
+    margin-left:0%;
   }
 }
 .equalizer {
@@ -78,10 +81,11 @@ margin-left:1.5rem;
 }
 .gridwrapper {
     display: flex;
+    
     overflow-x: auto; /* Enable horizontal scrolling */
     width: 100%;
     height: 100%;
-    
+    box-sizing: border-box;
     margin-top:1rem;
   }
   
