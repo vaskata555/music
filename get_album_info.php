@@ -9,11 +9,13 @@ if (isset($_GET['albumid'])) {
     $AlbumInfo = $Albums->getAlbumByAlbumId($albumid);
 
     if ($AlbumInfo) {
-        // Display the retrieved artist information
+        echo "<div class='artistfiller'>";
+        echo "<img class='artistimg' src=albumimg/" . $AlbumInfo['image'].">" ;
+        echo"</div>";
         echo "Artist ID: " . $AlbumInfo['id'] . "<br>";
         echo "Name: " . $AlbumInfo['artist_id'] . "<br>";
         echo "Image String: " . $AlbumInfo['name'] . "<br>";
-        echo "artist: " . $AlbumInfo['image'] . "<br><br>";
+       
     } else {
         echo "Artist not found.";
     }

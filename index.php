@@ -87,7 +87,7 @@ require_once("song_class.php");
 ?>
 </div>
 <div class="equalizer">
-aaa
+ Equalizer TO BE CREATED
   </div>
 </div>
 </div>
@@ -103,7 +103,7 @@ if (isset($_GET['songid'])) {
 }
 ?>
 <div class="grid-item">
-<audio controls id="myAudio" preload="metadata" style=" width:1000px;">
+<audio controls id="myAudio" preload="metadata" autoplay style=" width:1000px;">
 	<source id="audioSource" src="<?php echo isset($Songinfo['song']) ? $Songinfo['song'] : ''; ?>" type="audio/mpeg">
   
 

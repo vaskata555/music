@@ -7,9 +7,9 @@ session_start();
 <div class="topnav" id="myTopnav">
 
 
-  <a href="create_artist.php">добави артист</a>
-  <a href="add_song.php">добави песен</a>
-  <a href="create_album.php">добави album</a>
+  <a href="create_artist.php">add artist</a>
+  <a href="add_song.php">add song</a>
+  <a href="create_album.php">add album</a>
 </div>
 
 </nav>
